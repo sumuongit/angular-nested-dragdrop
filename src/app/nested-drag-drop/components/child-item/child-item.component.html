@@ -1,0 +1,14 @@
+<ng-container *ngIf="item">
+    <div class="item" cdkDrag cdkDropList [id]="item.uId" [cdkDropListData]="item.children"
+        [cdkDropListConnectedTo]="connectedTo" (cdkDropListDropped)="onDragDrop($event)">
+        <div>
+            [{{item.uId}}] - {{item.name}}
+        </div>
+        <ng-container *ngFor="let nextItem of item.children">
+            <div class="child-item">
+                <app-child-item [item]="nextItem" [connectedTo]="connectedTo" (itemDrop)="onDragDrop($event)">
+                </app-child-item>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
